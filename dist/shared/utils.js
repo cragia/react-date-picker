@@ -37,6 +37,10 @@ var findInput = function findInput(sibling) {
   };
 };
 
+var shouldFocusNextInput = function shouldFocusNextInput(key, value, maxValue) {
+  return Number(value) > Number(maxValue) || Number(key) > Number(maxValue.charAt(0)) || value.length >= maxValue.length;
+};
+
 var findPreviousInput = findInput('previousElementSibling');
 exports.findPreviousInput = findPreviousInput;
 var findNextInput = findInput('nextElementSibling');
@@ -81,7 +85,11 @@ var appendInputValue = function appendInputValue(event, onChange) {
       maxValue = _event$target.max,
       key = event.key;
 
-  if (Number(value) > Number(maxValue) || Number(key) > Number(maxValue.charAt(0)) || value.length >= maxValue.length) {
+  if (!isValidNumber(Number(key))) {
+    return;
+  }
+
+  if (shouldFocusNextInput(key, value, maxValue)) {
     var nextInput = findNextInput(target);
 
     if (Number(value) > Number(maxValue)) {
