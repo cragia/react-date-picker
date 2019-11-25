@@ -64,9 +64,6 @@ export default class DatePicker extends PureComponent {
   }
 
   onChange = (value, closeCalendar = true) => {
-    console.log(closeCalendar);
-    const err = new Error('oh no!!!!');
-    console.log(err.stack);
     this.setState({
       isOpen: !closeCalendar,
     });
