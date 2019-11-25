@@ -275,7 +275,9 @@ function (_PureComponent) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChangeExternal", function () {
-      var onChange = _this.props.onChange;
+      var _this$props = _this.props,
+          onChange = _this$props.onChange,
+          closeOnChange = _this$props.closeOnChange;
 
       if (!onChange) {
         return;
@@ -298,14 +300,14 @@ function (_PureComponent) {
 
         var processedValue = _this.getProcessedValue(proposedValue);
 
-        onChange(processedValue, false);
+        onChange(processedValue, closeOnChange);
       }
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderDay", function () {
-      var _this$props = _this.props,
-          maxDetail = _this$props.maxDetail,
-          showLeadingZeros = _this$props.showLeadingZeros;
+      var _this$props2 = _this.props,
+          maxDetail = _this$props2.maxDetail,
+          showLeadingZeros = _this$props2.showLeadingZeros;
       var _this$state = _this.state,
           value = _this$state.day,
           month = _this$state.month,
@@ -322,9 +324,9 @@ function (_PureComponent) {
     });
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "renderMonth", function () {
-      var _this$props2 = _this.props,
-          maxDetail = _this$props2.maxDetail,
-          showLeadingZeros = _this$props2.showLeadingZeros;
+      var _this$props3 = _this.props,
+          maxDetail = _this$props3.maxDetail,
+          showLeadingZeros = _this$props3.showLeadingZeros;
       var _this$state2 = _this.state,
           value = _this$state2.month,
           year = _this$state2.year;
@@ -358,11 +360,11 @@ function (_PureComponent) {
      * Gets current value in a desired format.
      */
     value: function getProcessedValue(value) {
-      var _this$props3 = this.props,
-          minDate = _this$props3.minDate,
-          maxDate = _this$props3.maxDate,
-          maxDetail = _this$props3.maxDetail,
-          returnValue = _this$props3.returnValue;
+      var _this$props4 = this.props,
+          minDate = _this$props4.minDate,
+          maxDate = _this$props4.maxDate,
+          maxDetail = _this$props4.maxDetail,
+          returnValue = _this$props4.returnValue;
 
       switch (returnValue) {
         case 'start':
@@ -392,13 +394,13 @@ function (_PureComponent) {
   }, {
     key: "renderNativeInput",
     value: function renderNativeInput() {
-      var _this$props4 = this.props,
-          disabled = _this$props4.disabled,
-          maxDate = _this$props4.maxDate,
-          minDate = _this$props4.minDate,
-          name = _this$props4.name,
-          required = _this$props4.required,
-          value = _this$props4.value;
+      var _this$props5 = this.props,
+          disabled = _this$props5.disabled,
+          maxDate = _this$props5.maxDate,
+          minDate = _this$props5.minDate,
+          name = _this$props5.name,
+          required = _this$props5.required,
+          value = _this$props5.value;
       return _react.default.createElement(_NativeInput.default, {
         key: "date",
         disabled: disabled,
@@ -424,9 +426,9 @@ function (_PureComponent) {
   }, {
     key: "formatDate",
     get: function get() {
-      var _this$props5 = this.props,
-          locale = _this$props5.locale,
-          maxDetail = _this$props5.maxDetail;
+      var _this$props6 = this.props,
+          locale = _this$props6.locale,
+          maxDetail = _this$props6.maxDetail;
       var options = {
         year: 'numeric'
       };
@@ -471,13 +473,13 @@ function (_PureComponent) {
     get: function get() {
       var _this2 = this;
 
-      var _this$props6 = this.props,
-          className = _this$props6.className,
-          disabled = _this$props6.disabled,
-          isCalendarOpen = _this$props6.isCalendarOpen,
-          maxDate = _this$props6.maxDate,
-          minDate = _this$props6.minDate,
-          required = _this$props6.required;
+      var _this$props7 = this.props,
+          className = _this$props7.className,
+          disabled = _this$props7.disabled,
+          isCalendarOpen = _this$props7.isCalendarOpen,
+          maxDate = _this$props7.maxDate,
+          minDate = _this$props7.minDate,
+          required = _this$props7.required;
       return {
         className: className,
         disabled: disabled,

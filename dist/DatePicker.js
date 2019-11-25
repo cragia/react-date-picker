@@ -117,6 +117,9 @@ function (_PureComponent) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (value) {
       var closeCalendar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      console.log(closeCalendar);
+      var err = new Error('oh no!!!!');
+      console.log(err.stack);
 
       _this.setState({
         isOpen: !closeCalendar
@@ -184,7 +187,8 @@ function (_PureComponent) {
           returnValue = _this$props2.returnValue,
           required = _this$props2.required,
           showLeadingZeros = _this$props2.showLeadingZeros,
-          value = _this$props2.value;
+          value = _this$props2.value,
+          closeOnChange = _this$props2.closeOnChange;
       var isOpen = this.state.isOpen;
 
       var _concat = [].concat(value),
@@ -206,14 +210,17 @@ function (_PureComponent) {
         returnValue: returnValue,
         required: required,
         showLeadingZeros: showLeadingZeros,
-        value: valueFrom
+        value: valueFrom,
+        closeOnChange: closeOnChange
       }), clearIcon !== null && _react.default.createElement("button", {
+        tabIndex: "-1",
         className: "".concat(baseClassName, "__clear-button ").concat(baseClassName, "__button"),
         disabled: disabled,
         onClick: this.clear,
         onFocus: this.stopPropagation,
         type: "button"
       }, clearIcon), calendarIcon !== null && _react.default.createElement("button", {
+        tabIndex: "-1",
         className: "".concat(baseClassName, "__calendar-button ").concat(baseClassName, "__button"),
         disabled: disabled,
         onClick: this.toggleCalendar,
@@ -362,7 +369,8 @@ DatePicker.defaultProps = {
   calendarIcon: CalendarIcon,
   clearIcon: ClearIcon,
   isOpen: null,
-  returnValue: 'start'
+  returnValue: 'start',
+  closeOnChange: true
 };
 DatePicker.propTypes = _objectSpread({}, _entry.default.propTypes, {
   calendarClassName: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.arrayOf(_propTypes.default.string)]),
@@ -374,6 +382,7 @@ DatePicker.propTypes = _objectSpread({}, _entry.default.propTypes, {
   name: _propTypes.default.string,
   returnValue: _propTypes.default.oneOf(['start', 'end', 'range']),
   required: _propTypes.default.bool,
-  showLeadingZeros: _propTypes.default.bool
+  showLeadingZeros: _propTypes.default.bool,
+  closeOnChange: _propTypes.default.bool
 });
 (0, _reactLifecyclesCompat.polyfill)(DatePicker);

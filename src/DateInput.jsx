@@ -356,7 +356,7 @@ export default class DateInput extends PureComponent {
    * calls props.onChange.
    */
   onChangeExternal = () => {
-    const { onChange } = this.props;
+    const { onChange, closeOnChange } = this.props;
 
     if (!onChange) {
       return;
@@ -376,7 +376,7 @@ export default class DateInput extends PureComponent {
     ) {
       const proposedValue = new Date(values.year, (values.month || 1) - 1, values.day || 1);
       const processedValue = this.getProcessedValue(proposedValue);
-      onChange(processedValue, false);
+      onChange(processedValue, closeOnChange);
     }
   }
 

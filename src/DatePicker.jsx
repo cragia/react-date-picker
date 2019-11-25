@@ -64,6 +64,9 @@ export default class DatePicker extends PureComponent {
   }
 
   onChange = (value, closeCalendar = true) => {
+    console.log(closeCalendar);
+    const err = new Error('oh no!!!!');
+    console.log(err.stack);
     this.setState({
       isOpen: !closeCalendar,
     });
@@ -107,6 +110,7 @@ export default class DatePicker extends PureComponent {
       required,
       showLeadingZeros,
       value,
+      closeOnChange,
     } = this.props;
     const { isOpen } = this.state;
 
@@ -128,9 +132,11 @@ export default class DatePicker extends PureComponent {
           required={required}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
+          closeOnChange={closeOnChange}
         />
         {clearIcon !== null && (
           <button
+            tabIndex="-1"
             className={`${baseClassName}__clear-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.clear}
@@ -142,6 +148,7 @@ export default class DatePicker extends PureComponent {
         )}
         {calendarIcon !== null && (
           <button
+            tabIndex="-1"
             className={`${baseClassName}__calendar-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.toggleCalendar}
@@ -263,6 +270,7 @@ DatePicker.defaultProps = {
   clearIcon: ClearIcon,
   isOpen: null,
   returnValue: 'start',
+  closeOnChange: true,
 };
 
 DatePicker.propTypes = {
@@ -283,6 +291,7 @@ DatePicker.propTypes = {
   returnValue: PropTypes.oneOf(['start', 'end', 'range']),
   required: PropTypes.bool,
   showLeadingZeros: PropTypes.bool,
+  closeOnChange: PropTypes.bool,
 };
 
 polyfill(DatePicker);
