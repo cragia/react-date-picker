@@ -9,7 +9,7 @@ Object.defineProperty(exports, "between", {
     return _utils.between;
   }
 });
-exports.updateInputWidth = exports.appendInputValue = exports.select = exports.focus = exports.max = exports.min = exports.findNextInput = exports.findPreviousInput = void 0;
+exports.updateInputWidth = exports.appendInputValue = exports.select = exports.focus = exports.max = exports.min = exports.findNextInput = exports.findPreviousInput = exports.isPositiveInteger = void 0;
 
 var _utils = require("react-calendar/dist/shared/utils");
 
@@ -24,6 +24,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 var isValidNumber = function isValidNumber(a) {
   return typeof a === 'number' && !isNaN(a);
 };
+
+var isPositiveInteger = function isPositiveInteger(a) {
+  var n = Math.floor(Number(a));
+  return n !== Infinity && String(n) === a && n >= 0;
+};
+
+exports.isPositiveInteger = isPositiveInteger;
 
 var findInput = function findInput(sibling) {
   return function (element) {
@@ -85,7 +92,7 @@ var appendInputValue = function appendInputValue(event, onChange) {
       maxValue = _event$target.max,
       key = event.key;
 
-  if (!isValidNumber(Number(key))) {
+  if (!isPositiveInteger(key)) {
     return;
   }
 

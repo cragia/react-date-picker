@@ -146,7 +146,7 @@ describe('MonthInput', function () {
     var target = {
       max: '5',
       min: '1',
-      value: 9
+      value: '9'
     };
     var event = {
       key: target.value,

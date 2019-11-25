@@ -44,10 +44,17 @@ export default class MonthInput extends PureComponent {
         name={name}
         max={maxMonth}
         min={minMonth}
-        onChange={onChange}
+        // onChange={onChange}
+        onChange={(event) => {
+          onChange(event);
+          appendInputValue({
+            ...event,
+            key: event.target.value.charAt(event.target.value.length - 1),
+          }, onChange);
+        }}
         onFocus={event => select(event.target)}
         onKeyDown={onKeyDown}
-        onKeyUp={event => appendInputValue(event, onChange)}
+        // onKeyUp={event => appendInputValue(event, onChange)}
         placeholder="mm"
         ref={(ref) => {
           if (ref) {

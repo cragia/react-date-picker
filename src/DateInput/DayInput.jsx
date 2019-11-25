@@ -61,10 +61,17 @@ export default class DayInput extends PureComponent {
         name={name}
         max={maxDay}
         min={minDay}
-        onChange={onChange}
+        // onChange={onChange}
+        onChange={(event) => {
+          onChange(event);
+          appendInputValue({
+            ...event,
+            key: event.target.value.charAt(event.target.value.length - 1),
+          }, onChange);
+        }}
         onFocus={event => select(event.target)}
         onKeyDown={onKeyDown}
-        onKeyUp={event => appendInputValue(event, onChange)}
+        // onKeyUp={event => appendInputValue(event, onChange)}
         placeholder="dd"
         ref={(ref) => {
           if (ref) {
