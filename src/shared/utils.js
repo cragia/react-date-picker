@@ -30,6 +30,11 @@ export const select = element => element && element.select();
 export const appendInputValue = (event, onChange) => {
   const { target, target: { value, max: maxValue }, key } = event;
 
+  // this passage avoids the problem when fast-typing from day
+  if (!value.includes(key)) {
+    return;
+  }
+
   if (!isPositiveInteger(key)) {
     return;
   }

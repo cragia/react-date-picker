@@ -107,7 +107,6 @@ export default class DatePicker extends PureComponent {
       required,
       showLeadingZeros,
       value,
-      closeOnChange,
     } = this.props;
     const { isOpen } = this.state;
 
@@ -129,15 +128,16 @@ export default class DatePicker extends PureComponent {
           required={required}
           showLeadingZeros={showLeadingZeros}
           value={valueFrom}
-          closeOnChange={closeOnChange}
         />
         {clearIcon !== null && (
           <button
-            tabIndex="-1"
             className={`${baseClassName}__clear-button ${baseClassName}__button`}
             disabled={disabled}
             onClick={this.clear}
-            onFocus={this.stopPropagation}
+            onFocus={(event) => {
+              this.closeCalendar();
+              this.stopPropagation(event);
+            }}
             type="button"
           >
             {clearIcon}
@@ -267,7 +267,6 @@ DatePicker.defaultProps = {
   clearIcon: ClearIcon,
   isOpen: null,
   returnValue: 'start',
-  closeOnChange: true,
 };
 
 DatePicker.propTypes = {
@@ -288,7 +287,6 @@ DatePicker.propTypes = {
   returnValue: PropTypes.oneOf(['start', 'end', 'range']),
   required: PropTypes.bool,
   showLeadingZeros: PropTypes.bool,
-  closeOnChange: PropTypes.bool,
 };
 
 polyfill(DatePicker);

@@ -90,7 +90,11 @@ var appendInputValue = function appendInputValue(event, onChange) {
       _event$target = event.target,
       value = _event$target.value,
       maxValue = _event$target.max,
-      key = event.key;
+      key = event.key; // this passage avoids the problem when fast-typing from day
+
+  if (!value.includes(key)) {
+    return;
+  }
 
   if (!isPositiveInteger(key)) {
     return;

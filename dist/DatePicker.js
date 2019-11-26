@@ -172,6 +172,8 @@ function (_PureComponent) {
   }, {
     key: "renderInputs",
     value: function renderInputs() {
+      var _this2 = this;
+
       var _this$props2 = this.props,
           calendarIcon = _this$props2.calendarIcon,
           clearIcon = _this$props2.clearIcon,
@@ -184,8 +186,7 @@ function (_PureComponent) {
           returnValue = _this$props2.returnValue,
           required = _this$props2.required,
           showLeadingZeros = _this$props2.showLeadingZeros,
-          value = _this$props2.value,
-          closeOnChange = _this$props2.closeOnChange;
+          value = _this$props2.value;
       var isOpen = this.state.isOpen;
 
       var _concat = [].concat(value),
@@ -207,14 +208,16 @@ function (_PureComponent) {
         returnValue: returnValue,
         required: required,
         showLeadingZeros: showLeadingZeros,
-        value: valueFrom,
-        closeOnChange: closeOnChange
+        value: valueFrom
       }), clearIcon !== null && _react.default.createElement("button", {
-        tabIndex: "-1",
         className: "".concat(baseClassName, "__clear-button ").concat(baseClassName, "__button"),
         disabled: disabled,
         onClick: this.clear,
-        onFocus: this.stopPropagation,
+        onFocus: function onFocus(event) {
+          _this2.closeCalendar();
+
+          _this2.stopPropagation(event);
+        },
         type: "button"
       }, clearIcon), calendarIcon !== null && _react.default.createElement("button", {
         tabIndex: "-1",
@@ -229,7 +232,7 @@ function (_PureComponent) {
   }, {
     key: "renderCalendar",
     value: function renderCalendar() {
-      var _this2 = this;
+      var _this3 = this;
 
       var isOpen = this.state.isOpen;
 
@@ -257,7 +260,7 @@ function (_PureComponent) {
           var collisions = (0, _detectElementOverflow.default)(_ref, document.body);
 
           if (collisions.collidedBottom) {
-            var overflowTopAfterChange = collisions.overflowTop + _ref.clientHeight + _this2.wrapper.clientHeight; // If it's going to make situation any better, display the calendar above the input
+            var overflowTopAfterChange = collisions.overflowTop + _ref.clientHeight + _this3.wrapper.clientHeight; // If it's going to make situation any better, display the calendar above the input
 
             if (overflowTopAfterChange < collisions.overflowBottom) {
               _ref.classList.add("".concat(className, "--above-label"));
@@ -273,7 +276,7 @@ function (_PureComponent) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       var _this$props4 = this.props,
           className = _this$props4.className,
@@ -288,7 +291,7 @@ function (_PureComponent) {
             return;
           }
 
-          _this3.wrapper = _ref2;
+          _this4.wrapper = _ref2;
         }
       }), this.renderInputs(), this.renderCalendar());
     }
@@ -366,8 +369,7 @@ DatePicker.defaultProps = {
   calendarIcon: CalendarIcon,
   clearIcon: ClearIcon,
   isOpen: null,
-  returnValue: 'start',
-  closeOnChange: true
+  returnValue: 'start'
 };
 DatePicker.propTypes = _objectSpread({}, _entry.default.propTypes, {
   calendarClassName: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.arrayOf(_propTypes.default.string)]),
@@ -379,7 +381,6 @@ DatePicker.propTypes = _objectSpread({}, _entry.default.propTypes, {
   name: _propTypes.default.string,
   returnValue: _propTypes.default.oneOf(['start', 'end', 'range']),
   required: _propTypes.default.bool,
-  showLeadingZeros: _propTypes.default.bool,
-  closeOnChange: _propTypes.default.bool
+  showLeadingZeros: _propTypes.default.bool
 });
 (0, _reactLifecyclesCompat.polyfill)(DatePicker);
