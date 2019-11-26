@@ -117,9 +117,6 @@ function (_PureComponent) {
 
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "onChange", function (value) {
       var closeCalendar = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-      console.log(closeCalendar);
-      var err = new Error('oh no!!!!');
-      console.log(err.stack);
 
       _this.setState({
         isOpen: !closeCalendar
